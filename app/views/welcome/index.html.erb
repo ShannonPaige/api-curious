@@ -10,7 +10,7 @@
 </div>
 
 <% if current_user %>
-  <div>
+  <div style = "margin-bottom: 10px">
   <p>
     Username: @<%= current_user.screen_name %>
   </p>
@@ -30,9 +30,19 @@
     Feed:<br />
     <%#= current_user.tweet_feed %>
     <% current_user.twitter.home_timeline.each do |tweet| %>
-          <%= tweet.user.name %> - @<%= tweet.user.screen_name %><br />
-          <%= tweet.full_text %><br />
-          Favorites: <%= tweet.favorite_count %> | Retweets: <%= tweet.retweet_count %><br /><br />
+          <strong class="fullname js-action-profile-name show-popup-with-id" data-aria-label-part=""><%= tweet.user.name %></strong>
+            <span class="username js-action-profile-name" data-aria-label-part=""><s>@</s><b><%= tweet.user.screen_name %></b></span>
+            <p class="TweetTextSize  js-tweet-text tweet-text" lang="en" data-aria-label-part="0"><%= tweet.full_text %></p>
+            <div class="IconContainer js-tooltip" data-original-title="Retweet">
+              <span class="Icon Icon--retweet"></span>
+              <span class="u-hiddenVisually">Retweet: <%= tweet.retweet_count %></span>
+            </div>
+            <div class="IconContainer js-tooltip" title="Like">
+            <div class="HeartAnimationContainer">
+              <div class="HeartAnimation"></div>
+            </div>
+            <span class="u-hiddenVisually">Like: <%= tweet.favorite_count %></span>
+          </div><br /><br />
     <% end %>
   </p>
   </div>

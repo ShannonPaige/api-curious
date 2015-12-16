@@ -8,3 +8,26 @@
     <%= link_to "Login With Twitter", login_path %>
   <% end %>
 </div>
+
+<% if current_user %>
+  <div>
+  <p>
+    Username: @<%= current_user.screen_name %>
+  </p>
+  <p>
+    Tweets:
+  </p>
+  <p>
+    Followers:
+  </p>
+  <p>
+    Following:
+  </p>
+  </div>
+
+  <div>
+  <p>
+    Feed:
+  </p>
+  </div>
+<% end %>

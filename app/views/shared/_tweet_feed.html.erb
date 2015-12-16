@@ -1,0 +1,5 @@
+<ul>
+  <% @tweets.each do |tweet| %>
+    <li><%= link_to tweet.text, "https://www.twitter.com/#{tweet.user.screen_name}" %></li>
+  <% end %>
+</ul>

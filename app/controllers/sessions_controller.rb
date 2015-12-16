@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    raise :test
-    if user = User.from_omniauth(auth_info)
+    # raise :test
+    if user = User.find_or_create_from_omniauth(auth_info)
       session[:user_id] = user.id
     end
     redirect_to root_path

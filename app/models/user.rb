@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  def self.from_omniauth(auth_info)
+  def self.find_or_create_from_omniauth(auth_info)
     where(uid: auth_info[:uid]).first_or_create do |new_user|
       new_user.uid                = auth_info.uid
       new_user.name               = auth_info.extra.raw_info.name
@@ -10,12 +10,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.twitter
-    client = Twitter::REST::Client.new do |config|
+  def twitter
+    @client ||= Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["API"]
       config.consumer_secret     = ENV["API_SECRET"]
-      config.access_token        = current_user.oauth_token  #this might be wrong, maybe config.oauth_token
-      config.access_token_secret = current_user.oauth_token_secret
+      config.access_token        = oauth_token
+      config.access_token_secret = oauth_token_secret
     end
   end
 end

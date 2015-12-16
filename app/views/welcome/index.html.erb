@@ -33,6 +33,7 @@
           <strong class="fullname js-action-profile-name show-popup-with-id" data-aria-label-part=""><%= tweet.user.name %></strong>
             <span class="username js-action-profile-name" data-aria-label-part=""><s>@</s><b><%= tweet.user.screen_name %></b></span>
             <p class="TweetTextSize  js-tweet-text tweet-text" lang="en" data-aria-label-part="0"><%= tweet.full_text %></p>
+            
             <div class="IconContainer js-tooltip" data-original-title="Retweet">
               <span class="Icon Icon--retweet"></span>
               <span class="u-hiddenVisually">Retweet: <%= tweet.retweet_count %></span>

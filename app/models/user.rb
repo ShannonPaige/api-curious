@@ -18,4 +18,35 @@ class User < ActiveRecord::Base
       config.access_token_secret = oauth_token_secret
     end
   end
+
+  def twitter_user
+    self.twitter.user
+  end
+
+  def number_of_tweets
+    twitter_user.tweets_count
+  end
+
+  def followers
+    twitter_user.followers_count
+  end
+
+  def following
+    twitter_user.friends_count
+  end
+
+  def tweet_feed
+    self.twitter.home_timeline.each do |tweet|
+      tweet.tweet_details
+    end
+  end
+
+  def tweet_details
+    tweet.user.name
+    tweet.user.screen_name
+    tweet.text
+    tweet.favorite_count
+    tweet.retweet_count
+  end
+
 end

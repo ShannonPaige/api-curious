@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def create
+    raise :test
     if user = User.from_omniauth(auth_info)
       session[:user_id] = user.id
     end

@@ -8,3 +8,32 @@
     <%= link_to "Login With Twitter", login_path %>
   <% end %>
 </div>
+
+<% if current_user %>
+  <div>
+  <p>
+    Username: @<%= current_user.screen_name %>
+  </p>
+  <p>
+    Tweets: <%= current_user.number_of_tweets %>
+  </p>
+  <p>
+    Followers: <%= current_user.followers %>
+  </p>
+  <p>
+    Following: <%= current_user.following %>
+  </p>
+  </div>
+
+  <div>
+  <p>
+    Feed:<br />
+    <%#= current_user.tweet_feed %>
+    <% current_user.twitter.home_timeline.each do |tweet| %>
+          <%= tweet.user.name %> - @<%= tweet.user.screen_name %><br />
+          <%= tweet.full_text %><br />
+          Favorites: <%= tweet.favorite_count %> | Retweets: <%= tweet.retweet_count %><br /><br />
+    <% end %>
+  </p>
+  </div>
+<% end %>

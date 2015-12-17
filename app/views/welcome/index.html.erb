@@ -15,34 +15,32 @@
     Username: @<%= current_user.screen_name %>
   </p>
   <p>
-    Tweets: <%= current_user.number_of_tweets %>
+    Tweets: <%= @twitter_service.get_tweets_count %>
   </p>
   <p>
-    Followers: <%= current_user.followers %>
+    Followers: <%= @twitter_service.get_followers_count %>
   </p>
   <p>
-    Following: <%= current_user.following %>
+    Following: <%= @twitter_service.get_following_count %>
   </p>
   </div>
 
   <div>
   <p>
     Feed:<br />
-    <%#= current_user.tweet_feed %>
-    <% current_user.twitter.home_timeline.each do |tweet| %>
+    <% @twitter_service.get_timeline.each do |tweet| %>
           <strong class="fullname js-action-profile-name show-popup-with-id" data-aria-label-part=""><%= tweet.user.name %></strong>
             <span class="username js-action-profile-name" data-aria-label-part=""><s>@</s><b><%= tweet.user.screen_name %></b></span>
             <p class="TweetTextSize  js-tweet-text tweet-text" lang="en" data-aria-label-part="0"><%= tweet.full_text %></p>
-            
+
             <div class="IconContainer js-tooltip" data-original-title="Retweet">
               <span class="Icon Icon--retweet"></span>
-              <span class="u-hiddenVisually">Retweet: <%= tweet.retweet_count %></span>
+              <span>Retweets: <%= tweet.retweet_count %></span>
             </div>
             <div class="IconContainer js-tooltip" title="Like">
             <div class="HeartAnimationContainer">
-              <div class="HeartAnimation"></div>
             </div>
-            <span class="u-hiddenVisually">Like: <%= tweet.favorite_count %></span>
+            <span><%= link_to "Likes", favorite_path(tweet.id), method: :patch %>: <%= tweet.favorite_count %> </span>
           </div><br /><br />
     <% end %>
   </p>

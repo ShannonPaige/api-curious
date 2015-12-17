@@ -1,15 +1,9 @@
 <div>
   <%= image_tag current_user.profile_image_url %>
   <p>
-    Username: @<%= current_user.screen_name %>
-  </p>
-  <p>
-    Tweets: <%= @twitter_service.get_tweets_count %>
-  </p>
-  <p>
-    Followers: <%= @twitter_service.get_followers_count %>
-  </p>
-  <p>
+    Username: @<%= current_user.screen_name %><br />
+    Tweets: <%= @twitter_service.get_tweets_count %> |
+    Followers: <%= @twitter_service.get_followers_count %> |
     Following: <%= @twitter_service.get_following_count %>
   </p>
 </div>

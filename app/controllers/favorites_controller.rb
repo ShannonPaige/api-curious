@@ -1,7 +1,6 @@
 class FavoritesController < ApplicationController
   def update
-    
-    current_user.make_favorite(params[:tweet])
+    TwitterService.new(current_user).favorite_it(params[:id])
     redirect_to root_path
   end
 end

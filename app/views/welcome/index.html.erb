@@ -31,7 +31,8 @@
     <% @twitter_service.get_timeline.each do |tweet| %>
           <%= tweet.user.name %> - @<%= tweet.user.screen_name %><br />
           <%= tweet.full_text %><br />
-          Favorites: <%= tweet.favorite_count %> <%= link_to "Favorite", favorite_path(tweet.id), method: :patch %> | Retweets: <%= tweet.retweet_count %><br /><br />
+          Favorites: <%= tweet.favorite_count %> <%= link_to "Favorite", favorite_path(tweet.id), method: :patch %>
+          | Retweets: <%= tweet.retweet_count %><br /><br />
     <% end %>
   </p>
   </div>

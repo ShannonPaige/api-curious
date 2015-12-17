@@ -42,4 +42,8 @@ class TwitterService
   def retweet_it(tweet)
     connection.retweet(tweet)
   end
+
+  def unfollow_this_guy(user_id)
+    connection.unfollow(user_id.to_i)
+  end
 end

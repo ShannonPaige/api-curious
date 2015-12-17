@@ -1,51 +1,16 @@
-<h1>Welcome!</h1>
-
-<div style = "margin-bottom: 10px">
+<div class="container-fluid">
   <% if current_user %>
-    <p>Hello, <%= current_user.name %></p>
-    <%= link_to "Logout", logout_path %>
+
+    <div class="row">
+      <div class="col-md-3"><%= current_user.name %>
+        <%= render partial: 'shared/profile' %>
+        </div>
+      <div class="col-md-9"><%= render partial: 'shared/tweet_deck' %><%= render partial: 'shared/twitter_feed' %></div>
+    </div>
+
   <% else %>
-    <%= link_to "Login With Twitter", login_path %>
+    <div class="jumbotron">
+      <%= link_to "#{image_tag("http://i.imgur.com/7Jq3pi2.jpg")}".html_safe, login_path %>
+    </div>
   <% end %>
 </div>
-
-<% if current_user %>
-  <div style = "margin-bottom: 10px">
-  <%= image_tag current_user.profile_image_url %>
-  <p>
-    Username: @<%= current_user.screen_name %>
-  </p>
-  <p>
-    Tweets: <%= @twitter_service.get_tweets_count %>
-  </p>
-  <p>
-    Followers: <%= @twitter_service.get_followers_count %>
-  </p>
-  <p>
-    Following: <%= @twitter_service.get_following_count %>
-  </p>
-  </div>
-
-  <div>
-    <%= form_tag(tweets_path, method: "post") do %>
-    <%= text_field_tag(:tweet, "What's happening?") %>
-    <%= submit_tag("Tweet") %>
-    <% end %>
-  <div>
-  <p>
-    Feed:<br />
-    <% @twitter_service.get_timeline.each do |tweet| %>
-          <strong><%= tweet.user.name %></strong>
-            <span class="username">@<b><%= tweet.user.screen_name %></b> <%= link_to "(Unfollow)", friend_path(id: tweet.user.id), method: :delete %></span>
-            <p><%= tweet.full_text %></p>
-
-            <div>
-              <span><%= link_to "Retweet", retweets_path(id: tweet.id), method: :post %> (<%= tweet.retweet_count %>)</span>
-            </div>
-            <div>
-              <span><%= link_to "Like", favorites_path(id: tweet.id), method: :post %> (<%= tweet.favorite_count %>) </span>
-          </div><br /><br />
-    <% end %>
-  </p>
-  </div>
-<% end %>

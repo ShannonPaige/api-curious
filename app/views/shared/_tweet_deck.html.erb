@@ -1,0 +1,6 @@
+<div>
+  <%= form_tag(tweets_path, method: "post") do %>
+  <%= text_field_tag(:tweet, nil, { placeholder: "What's happening?", size: 140, maxlength: 140 }) %>
+  <%= submit_tag("Tweet") %>
+  <% end %>
+<div>

@@ -5,6 +5,8 @@ require "capybara/rails"
 require "mocha/mini_test"
 require "minitest/pride"
 require "simplecov"
+require 'webmock'
+require 'vcr'
 
 SimpleCov.start "rails"
 
@@ -12,7 +14,13 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  VCR.configure do |config|
+    config.cassette_library_dir = 'test/cassettes'
+    config.hook_into :webmock
+  end
+
+  # stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
+  #   to_return(:status => 200, :body => "", :headers => {})
 end
 
 class ActionDispatch::IntegrationTest

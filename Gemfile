@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+gem 'webmock'
+gem 'vcr'
 gem "figaro"
 gem "omniauth-twitter"
 gem "database_cleaner"

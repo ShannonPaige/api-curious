@@ -35,7 +35,7 @@ class TwitterService
     connection.home_timeline
   end
 
-  def tweet_that_shit(tweet)
+  def tweet_it(tweet)
     connection.update(tweet)
   end
 end

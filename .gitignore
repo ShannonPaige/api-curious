@@ -17,3 +17,6 @@
 
 # Ignore simplecov
 /coverage
+
+#Ignore Cassettes
+/test/cassettes

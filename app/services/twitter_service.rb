@@ -38,4 +38,8 @@ class TwitterService
   def tweet_it(tweet)
     connection.update(tweet)
   end
+
+  def retweet_it(tweet)
+    connection.retweet(tweet)
+  end
 end

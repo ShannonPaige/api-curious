@@ -40,10 +40,10 @@
             <p><%= tweet.full_text %></p>
 
             <div>
-              <span>Retweets: <%= tweet.retweet_count %></span>
+              <span><%= link_to "Retweet", retweets_path(id: tweet.id), method: :post %> (<%= tweet.retweet_count %>)</span>
             </div>
             <div>
-              <span><%= link_to "Likes", favorite_path(tweet.id), method: :patch %>: <%= tweet.favorite_count %> </span>
+              <span><%= link_to "Like", favorites_path(id: tweet.id), method: :post %> (<%= tweet.favorite_count %>) </span>
           </div><br /><br />
     <% end %>
   </p>

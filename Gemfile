@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 
-gem 'webmock'
-gem 'vcr'
+
+
 gem "figaro"
 gem "omniauth-twitter"
 gem "database_cleaner"
@@ -37,7 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 
-group :development, :test do
+group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
   gem "capybara"
@@ -46,6 +46,8 @@ group :development, :test do
   gem "mocha"
   gem "simplecov"
   gem 'better_errors'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do

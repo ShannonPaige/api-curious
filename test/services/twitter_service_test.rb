@@ -19,8 +19,7 @@ class TwitterServiceTest < ActiveSupport::TestCase
   end
 
   def stub_tweet_request
-    stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
-      to_return(:status => 200, :body => "", :headers => {})
+
   end
 
   test "#get_tweets_count" do
@@ -65,8 +64,9 @@ class TwitterServiceTest < ActiveSupport::TestCase
   end
 
   test "#tweet_it" do
-    skip
     VCR.use_cassette("twitter_service#tweet_it") do
+      stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
+      to_return(:status => 200, :body => "", :headers => {})
 
       twitter_service.tweet_it("Tweet Test")
 

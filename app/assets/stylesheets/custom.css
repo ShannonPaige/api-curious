@@ -1,0 +1,35 @@
+/*nav-bar**/
+.brand-image {
+  height: 50px;
+}
+
+.navbar-brand {
+    padding: 0px 0px 0px 10px;
+}
+
+.navbar-right {
+    float: right!important;
+    margin-right: 50px;
+    margin-top: 25px;
+}
+
+.container-fluid {
+    margin: 0px
+    padding: 0px
+
+}
+
+.navbar .navbar-default {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*jumbotron on pre-login page*/
+
+.jumbotron {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: inherit;
+    background-color: #fff;
+}

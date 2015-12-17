@@ -19,8 +19,7 @@ class TwitterServiceTest < ActiveSupport::TestCase
   end
 
   def stub_tweet_request
-    stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
-      to_return(:status => 200, :body => "", :headers => {})
+
   end
 
   test "#get_tweets_count" do
@@ -56,21 +55,37 @@ class TwitterServiceTest < ActiveSupport::TestCase
   end
 
   test "#favorite_it" do
-    skip
+    twitter_service.stubs(:favorite).returns(Twitter::Tweet.new(id: 123))
     VCR.use_cassette("twitter_service#favorite_it") do
-      tweets = twitter_service.favorite_it(1)
 
-      assert_equal [], twitter_service.favorite_it(1)
+      assert_equal Twitter::Tweet, twitter_service.favorite(1).class
+      assert_equal Array, twitter_service.favorite_it(1).class
     end
   end
 
   test "#tweet_it" do
-    skip
+    twitter_service.stubs(:update).returns(Twitter::Tweet.new(id: 123))
     VCR.use_cassette("twitter_service#tweet_it") do
 
-      twitter_service.tweet_it("Tweet Test")
+      assert_equal Twitter::Tweet, twitter_service.update("Tweet Test").class
+      assert_equal Twitter::Tweet, twitter_service.tweet_it("Tweet Test").class
+    end
+  end
 
-      assert_equal 200, :status
+  test "#retweet_it" do
+    twitter_service.stubs(:retweet).returns(Twitter::Tweet.new(id: 123))
+    VCR.use_cassette("twitter_service#retweet_it") do
+
+      assert_equal Twitter::Tweet, twitter_service.retweet("Tweet Test").class
+      assert_equal Array, twitter_service.retweet_it("Tweet Test").class
+    end
+  end
+
+  test "#unfollow_this_guy" do
+    twitter_service.stubs(:unfollow).returns(Array.new)
+    VCR.use_cassette("twitter_service#unfollow_this_guy") do
+
+      assert_equal Array, twitter_service.unfollow(1133971).class
     end
   end
 

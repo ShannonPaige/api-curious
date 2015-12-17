@@ -19,20 +19,8 @@ class ActiveSupport::TestCase
     config.hook_into :webmock
   end
 
-  def stub_twitter_request
-    stub_request(:get, "https://api.twitter.com/1.1/statuses/home_timeline.json").
-      with(:headers => {'Accept'            =>'application/json',
-                        'Accept-Encoding'   =>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                        'Authorization'     =>'OAuth oauth_consumer_key="kj8l5Uc1nhsYiqifw0xEaK61f",
-                                              oauth_nonce="db35823cc0b34d420506b82658d0ac58",
-                                              oauth_signature="AF1Ef562CpoAWMrczJfOJr1dLKY%3D",
-                                              oauth_signature_method="HMAC-SHA1",
-                                              oauth_timestamp="1450322070", 
-                                              oauth_token="61068111-XFa2JjwZJzfPBUWXLdElj8iZ2D7i1YgWRo5KMgjXP",
-                                              oauth_version="1.0"',
-                        'User-Agent'=>'TwitterRubyGem/5.15.0'}).
-      to_return(:status => 200, :body => "", :headers => {})
-  end
+  # stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
+  #   to_return(:status => 200, :body => "", :headers => {})
 end
 
 class ActionDispatch::IntegrationTest

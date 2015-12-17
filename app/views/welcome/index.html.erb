@@ -36,7 +36,7 @@
     Feed:<br />
     <% @twitter_service.get_timeline.each do |tweet| %>
           <strong><%= tweet.user.name %></strong>
-            <span class="username">@<b><%= tweet.user.screen_name %></b></span>
+            <span class="username">@<b><%= tweet.user.screen_name %></b> <%= link_to "(Unfollow)", friend_path(id: tweet.user.id), method: :delete %></span>
             <p><%= tweet.full_text %></p>
 
             <div>

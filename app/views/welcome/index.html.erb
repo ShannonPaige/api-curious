@@ -26,6 +26,11 @@
   </div>
 
   <div>
+    <%= form_tag(tweets_path, method: "post") do %>
+    <%= text_field_tag(:tweet, "What's happening?") %>
+    <%= submit_tag("Tweet") %>
+    <% end %>
+  <div>
   <p>
     Feed:<br />
     <% @twitter_service.get_timeline.each do |tweet| %>

@@ -1,13 +1,19 @@
 <div>
   <% @twitter_service.get_timeline.each do |tweet| %>
-  <div>
-    <strong><%= tweet.user.name %></strong>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong><%= tweet.user.name %></strong>
       <span class="username">@<%= tweet.user.screen_name %>
-      <%= link_to "(Unfollow)", friend_path(id: tweet.user.id), method: :delete %></span>
-      <p><%= tweet.full_text %></p>
+      <%= link_to "(Unfollow)", friend_path(id: tweet.user.id), method: :delete %></span></h3>
+    </div>
+    <div class="panel-footer">
+      <%= tweet.full_text %>
+      <div align="right">
       <span><%= link_to "Retweet", retweets_path(id: tweet.id), method: :post %> (<%= tweet.retweet_count %>)</span>
       |
       <span><%= link_to "Like", favorites_path(id: tweet.id), method: :post %> (<%= tweet.favorite_count %>) </span>
     </div>
+  </div>
+  </div>
   <% end %>
 </div>

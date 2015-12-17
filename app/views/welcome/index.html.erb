@@ -1,10 +1,13 @@
-<div>
+<div class="container-fluid">
   <% if current_user %>
-    <p>Hello, <%= current_user.name %></p>
-    <%= link_to "Logout", logout_path %>
-    <%= render partial: 'shared/profile' %>
-    <%= render partial: 'shared/tweet_deck' %>
-    <%= render partial: 'shared/twitter_feed' %>
+
+    <div class="row">
+      <div class="col-md-3"><%= current_user.name %>
+        <%= render partial: 'shared/profile' %>
+        </div>
+      <div class="col-md-9"><%= render partial: 'shared/tweet_deck' %><%= render partial: 'shared/twitter_feed' %></div>
+    </div>
+
   <% else %>
     <div class="jumbotron">
       <%= link_to "#{image_tag("http://i.imgur.com/7Jq3pi2.jpg")}".html_safe, login_path %>

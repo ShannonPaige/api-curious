@@ -15,24 +15,24 @@
     Username: @<%= current_user.screen_name %>
   </p>
   <p>
-    Tweets: <%= current_user.number_of_tweets %>
+    Tweets: <%= @twitter_service.get_tweets_count %>
   </p>
   <p>
-    Followers: <%= current_user.followers %>
+    Followers: <%= @twitter_service.get_followers_count %>
   </p>
   <p>
-    Following: <%= current_user.following %>
+    Following: <%= @twitter_service.get_following_count %>
   </p>
   </div>
 
   <div>
   <p>
     Feed:<br />
-    <%#= current_user.tweet_feed %>
-    <% current_user.twitter.home_timeline.each do |tweet| %>
+    <% @twitter_service.get_timeline.each do |tweet| %>
           <%= tweet.user.name %> - @<%= tweet.user.screen_name %><br />
           <%= tweet.full_text %><br />
-          Favorites: <%= tweet.favorite_count %> | Retweets: <%= tweet.retweet_count %><br /><br />
+          Favorites: <%= tweet.favorite_count %> <%= link_to "Favorite", favorite_path(tweet.id), method: :patch %>
+          | Retweets: <%= tweet.retweet_count %><br /><br />
     <% end %>
   </p>
   </div>

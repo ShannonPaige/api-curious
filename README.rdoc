@@ -1,5 +1,0 @@
-In this project, I'll be focusing on consuming and working with data from public APIs.
-
-As a vehicle for learning this concepts, I'll be using the Twitter API to build a basic version of the Twitter feed where users can view and post tweets.
-
-As I build these features, I'll also be working with the OAuth protocol to authenticate our users with the third-party provider, and using various testing techniques to allow us to test against the third-party data.
